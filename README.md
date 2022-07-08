@@ -9,6 +9,7 @@ https://github.com/chris-gong/gamelift-example-lambda
 
 
 All lambda setup in Postman:
+
 ![image](https://user-images.githubusercontent.com/3318539/177911559-de92b4c3-fe8e-4b79-92f2-f2c9f54295c8.png)
 
 
