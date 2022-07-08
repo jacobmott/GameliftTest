@@ -1,0 +1,1 @@
+"E:\UnrealEngine\Engine\Binaries\Win64\UnrealEditor.exe"  "E:\UnrealProjects\GameliftTest\GameliftTest.uproject" ThirdPersonMap -server -log -nosteam

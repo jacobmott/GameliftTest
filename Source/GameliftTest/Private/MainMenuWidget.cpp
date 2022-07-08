@@ -140,7 +140,7 @@ void UMainMenuWidget::OnExchangeCodeForTokensResponseReceived(FHttpRequestPtr Re
             FString IdToken = JsonObject->GetStringField("id_token");
             FString RefreshToken = JsonObject->GetStringField("refresh_token");
             GameLiftTutorialGameInstance->SetCognitoTokens(AccessToken, IdToken, RefreshToken);
-            UE_LOG(LogTemp, Warning, TEXT("OnExchangeCodeForTokensResponseReceived recieved/call"));
+            //UE_LOG(LogTemp, Warning, TEXT("OnExchangeCodeForTokensResponseReceived recieved/call"));
             TSharedRef<IHttpRequest> GetPlayerDataRequest = HttpModule->CreateRequest();
             GetPlayerDataRequest->OnProcessRequestComplete().BindUObject(this, &UMainMenuWidget::OnGetPlayerDataResponseReceived);
             GetPlayerDataRequest->SetURL(ApiUrl + "/getplayerdata");
@@ -170,7 +170,7 @@ void UMainMenuWidget::OnGetPlayerDataResponseReceived(FHttpRequestPtr Request, F
 
         WinsTextBlock->SetText(FText::FromString("Wins: " + Wins));
         LossesTextBlock->SetText(FText::FromString("Losses: " + Losses));
-        UE_LOG(LogTemp, Warning, TEXT("OnGetPlayerDataResponseReceived recieved/call"));
+        //UE_LOG(LogTemp, Warning, TEXT("OnGetPlayerDataResponseReceived recieved/call"));
         
         WebBrowser->SetVisibility(ESlateVisibility::Hidden);
         MatchmakingButton->SetVisibility(ESlateVisibility::Visible);

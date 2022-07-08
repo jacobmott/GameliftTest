@@ -1,0 +1,1 @@
+"E:\UnrealEngine\Engine\Binaries\Win64\UnrealEditor.exe"  "E:\UnrealProjects\GameliftTest\GameliftTest.uproject" 192.168.0.18 -game -ResX=800 -ResY=800 -WinX=0 WinY=20 -log -nosteam
