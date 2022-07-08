@@ -3,8 +3,15 @@ Working through youtube tutorial for aws Gamelift and Unreal (12 part youtube se
 
 Finished 1 - 7 .. only need to do part 8 and thats pretty much it
 
+
 All the code for all the lambdas can be found here:
 https://github.com/chris-gong/gamelift-example-lambda
+
+
+All lambda setup in Postman:
+![image](https://user-images.githubusercontent.com/3318539/177911559-de92b4c3-fe8e-4b79-92f2-f2c9f54295c8.png)
+
+
 
 
 
