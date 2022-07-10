@@ -34,6 +34,7 @@ void UMainMenuWidget::NativeConstruct() {
   Super::NativeConstruct();
   bIsFocusable = true;
 
+
   WebBrowser = (UWebBrowser*)GetWidgetFromName(TEXT("WebBrowser_Login"));
 
   MatchmakingButton = (UButton*)GetWidgetFromName(TEXT("Button_Matchmaking"));
@@ -56,7 +57,7 @@ void UMainMenuWidget::NativeConstruct() {
       AccessToken = GameLiftTutorialGameInstance->AccessToken;
     }
   }
-  
+
   if (AccessToken.Len() > 0) {
     TSharedRef<IHttpRequest> GetPlayerDataRequest = HttpModule->CreateRequest();
     GetPlayerDataRequest->OnProcessRequestComplete().BindUObject(this, &UMainMenuWidget::OnGetPlayerDataResponseReceived);
@@ -68,17 +69,19 @@ void UMainMenuWidget::NativeConstruct() {
   }
   else {
     IWebBrowserSingleton* WebBrowserSingleton = IWebBrowserModule::Get().GetSingleton();
-  
+
     if (WebBrowserSingleton != nullptr) {
       TOptional<FString> DefaultContext;
       TSharedPtr<IWebBrowserCookieManager> CookieManager = WebBrowserSingleton->GetCookieManager(DefaultContext);
       if (CookieManager.IsValid()) {
         CookieManager->DeleteCookies();
       }
+
     }
-  
+
+
     WebBrowser->LoadURL(LoginUrl);
-  
+
     FScriptDelegate LoginDelegate;
     LoginDelegate.BindUFunction(this, "HandleLoginUrlChange");
     WebBrowser->OnUrlChanged.Add(LoginDelegate);

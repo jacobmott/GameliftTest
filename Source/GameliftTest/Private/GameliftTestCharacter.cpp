@@ -8,6 +8,10 @@
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
 
+#include "GameLiftTestPlayerState.h"
+#include "Net/UnrealNetwork.h"
+#include "Kismet/GameplayStatics.h"
+
 //////////////////////////////////////////////////////////////////////////
 // AGameliftTestCharacter
 
@@ -75,6 +79,35 @@ void AGameliftTestCharacter::SetupPlayerInputComponent(class UInputComponent* Pl
 	// handle touch devices
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &AGameliftTestCharacter::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &AGameliftTestCharacter::TouchStopped);
+
+	PlayerInputComponent->BindAction("ReturnToMainMenu", IE_Pressed, this, &AGameliftTestCharacter::ReturnToMainMenu);
+
+}
+
+
+void AGameliftTestCharacter::OnRep_PlayerState(){
+  Super::OnRep_PlayerState();
+
+  APlayerState* OwningPlayerState = GetPlayerState();
+  if (OwningPlayerState != nullptr) {
+    AGameLiftTestPlayerState* OwningGameLiftTutorialPlayerState = Cast<AGameLiftTestPlayerState>(OwningPlayerState);
+    if (OwningGameLiftTutorialPlayerState != nullptr) {
+      FString TeamName = OwningGameLiftTutorialPlayerState->Team;
+
+      if (TeamName.Len() > 0) {
+        UMaterialInstanceDynamic* OwningPlayerMaterial = UMaterialInstanceDynamic::Create(GetMesh()->GetMaterial(0), this);
+
+        if (TeamName.Equals("cowboys")) {
+          OwningPlayerMaterial->SetVectorParameterValue("Tint", FLinearColor::Red);
+        }
+        else if (TeamName.Equals("aliens")) {
+          OwningPlayerMaterial->SetVectorParameterValue("Tint", FLinearColor::Blue);
+        }
+
+        GetMesh()->SetMaterial(0, OwningPlayerMaterial);
+      }
+    }
+  }
 }
 
 void AGameliftTestCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
@@ -85,6 +118,13 @@ void AGameliftTestCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector
 void AGameliftTestCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 {
 	StopJumping();
+}
+
+
+void AGameliftTestCharacter::ReturnToMainMenu(){
+  FString LevelName = "MainMenuMap";
+
+  UGameplayStatics::OpenLevel(GetWorld(), FName(*LevelName), false, "");
 }
 
 void AGameliftTestCharacter::TurnAtRate(float Rate)
