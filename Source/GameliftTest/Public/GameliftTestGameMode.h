@@ -46,8 +46,13 @@ USTRUCT()
 struct FUpdateGameSessionState {
   GENERATED_BODY();
 
-  FUpdateGameSessionState() {
+  UPROPERTY()
+    EUpdateReason Reason;
 
+  TMap<FString, Aws::GameLift::Server::Model::Player> PlayerIdToPlayer;
+
+  FUpdateGameSessionState() {
+    Reason = EUpdateReason::NO_UPDATE_RECEIVED;
   }
 
 };
@@ -142,6 +147,22 @@ private:
     bool GameSessionActivated;
 
 
+
+  UPROPERTY()
+    FString LatestBackfillTicketId;
+
+  UPROPERTY()
+    bool WaitingForPlayersToJoin;
+
+  UPROPERTY()
+    int TimeSpentWaitingForPlayersToJoin;
+
+  TMap<FString, Aws::GameLift::Server::Model::Player> ExpectedPlayers;
+
+
+  UFUNCTION()
+    void SuspendBackfill();
+
   UFUNCTION()
     void CountDownUntilGameOver();
 
@@ -175,7 +196,8 @@ private:
 
   void OnRecordMatchResultResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful);
 
-
+  FString CreateBackfillRequest(FString GameSessionArn, FString MatchmakingConfigurationArn, TMap<FString, Aws::GameLift::Server::Model::Player> Players);
+  bool StopBackfillRequest(FString GameSessionArn, FString MatchmakingConfigurationArn, FString TicketId);
 
 
 

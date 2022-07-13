@@ -291,6 +291,8 @@ public:
      */
     inline DescribePlayerSessionsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
+    inline int GetPlayerSessionsCount() const { return m_playerSessions_count; }
+
   private:
     PlayerSession m_playerSessions[MAX_PLAYER_SESSIONS];
     int m_playerSessions_count;
