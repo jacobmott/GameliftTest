@@ -1,7 +1,10 @@
 # GameliftTest
 Working through youtube tutorial for aws Gamelift and Unreal (12 part youtube series)
 
-Finished 1 - 7 .. only need to do part 8 and thats pretty much it
+Finished the course!
+Backfill is working 
+![image](https://user-images.githubusercontent.com/3318539/178659249-4ea9ca1b-9ea6-45c6-8dc6-cdd38d9150f7.png)
+
 
 
 All the code for all the lambdas can be found here:
