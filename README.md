@@ -3,8 +3,15 @@ Working through youtube tutorial for aws Gamelift and Unreal (12 part youtube se
 
 Finished the course!
 Backfill is working (Backfill only works if the amount of players matches up to the ruleset)
+
 For example, if you have a game started with 1vs1.. and your ruleset allows 2v2.. then 2 new players have to queue up in order
+
 to fill the backfill request, 1 player cant join by themselves
+
+![image](https://user-images.githubusercontent.com/3318539/178661089-658f454d-7b49-4308-96c1-523411ea7129.png)
+
+![image](https://user-images.githubusercontent.com/3318539/178661310-cea8170b-0fd2-401f-b7eb-1e3ddfa52ce0.png)
+
 ![image](https://user-images.githubusercontent.com/3318539/178660327-f74ce338-a08f-46ec-aa47-ed22b7b025fd.png)
 
 ![image](https://user-images.githubusercontent.com/3318539/178659249-4ea9ca1b-9ea6-45c6-8dc6-cdd38d9150f7.png)
