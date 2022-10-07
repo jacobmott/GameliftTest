@@ -1,7 +1,7 @@
 exports.handler = async (event, context, callback) => {
     const authCode = event.authorizationToken;
     
-    if (authCode == 'myserversauthfunction1233212719sakladnme') {
+    if (authCode == '') {
         const policy = {
             Version: '2012-10-17',
             Statement: []

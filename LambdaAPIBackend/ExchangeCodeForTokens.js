@@ -1,9 +1,9 @@
 const https = require('https');
 const querystring = require('querystring');
 
-const hostname = 'gamelifttest2.auth.us-east-1.amazoncognito.com';
-const clientId = '18uvsa7c9nb7o43divq726ktr5';
-const callbackUrl = 'https://l6cmfaswme.execute-api.us-east-1.amazonaws.com/test/getsigninresult';
+const hostname = '';
+const clientId = '';
+const callbackUrl = '';
 
 exports.handler = async (event) => {
     let response;
